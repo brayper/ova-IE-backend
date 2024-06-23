@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+  app_ova:
+    container_name: ova_app
+    build: .
+    ports:
+      - "8080:8080"
+    restart: always
+    environment:
+      - DATABASE_URL=jdbc:postgresql://java_db:3306/postgres
+      - DATABASE_USERNAME=postgres
+      - DATABASE_PASSWORD=cEsRqCbmFefxTICPuoeaIHTUDLanMBAu
+    depends_on:
+      - java_db
+  java_db:
+    container_name: ova_db
+    image: postgres:16
+    ports:
+      - "40657:3306"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: cEsRqCbmFefxTICPuoeaIHTUDLanMBAu
+      POSTGRES_DB: railway
