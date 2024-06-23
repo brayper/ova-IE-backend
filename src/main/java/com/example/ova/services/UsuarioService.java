@@ -6,6 +6,7 @@ import com.example.ova.repository.UsuarioRepository;
 
 import java.util.Date;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -46,5 +47,9 @@ public class UsuarioService {
 
             return "Usuario creado con éxito";
         }
+    }
+
+    public List<Usuario> usuarioList(){
+        return usuarioRepository.findAll();
     }
 }

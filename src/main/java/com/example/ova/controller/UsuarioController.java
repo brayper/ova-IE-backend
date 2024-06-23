@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import com.example.ova.services.UsuarioService;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -44,5 +45,10 @@ public class UsuarioController {
             errorResponse.put("message", "Hubo un error al crear la persona");
             return ResponseEntity.badRequest().body(errorResponse);
         }
+    }
+
+    @GetMapping("/list")
+    public List<Usuario> usuarioList(){
+        return usuarioService.usuarioList();
     }
 }
