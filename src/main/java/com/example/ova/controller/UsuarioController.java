@@ -23,14 +23,15 @@ public class UsuarioController {
     Map<String, String> errorResponse = new HashMap<>();
 
     @PostMapping("/login")
-    public ResponseEntity<?> loginUsuario(@RequestParam String correo, @RequestParam String password){
+    public ResponseEntity<?> loginUsuario(@RequestBody Usuario user){
         errorResponse.clear();
-        Map<String, Object> usuario = usuarioService.loginUsuario(correo, password);
+        Map<String, Object> usuario = usuarioService.loginUsuario(user.getCorreo(), user.getPassword());
         if(!usuario.isEmpty()){
             return ResponseEntity.ok(usuario);
-        }else
+        }else {
             errorResponse.put("message", "Login incorrecto. Por favor verifique sus datos");
             return ResponseEntity.badRequest().body(errorResponse);
+        }
     }
 
     @PostMapping("/save")
@@ -50,5 +51,10 @@ public class UsuarioController {
     @GetMapping("/list")
     public List<Usuario> usuarioList(){
         return usuarioService.usuarioList();
+    }
+
+    @GetMapping("/cursando/{correo}")
+    public Object cursando(@PathVariable String correo){
+        return usuarioService.cursando(correo);
     }
 }

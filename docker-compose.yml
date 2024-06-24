@@ -1,12 +1,10 @@
-version: '3'
-
 services:
   app_ova:
     container_name: ova_app
+    image: pee-ova-app:1.0.0
     build: .
     ports:
-      - "8080:8080"
-    restart: always
+      - 8080:8080
     environment:
       - DATABASE_URL=jdbc:postgresql://java_db:3306/postgres
       - DATABASE_USERNAME=postgres
@@ -17,7 +15,7 @@ services:
     container_name: ova_db
     image: postgres:16
     ports:
-      - "40657:3306"
+      - 40657:3306
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: cEsRqCbmFefxTICPuoeaIHTUDLanMBAu

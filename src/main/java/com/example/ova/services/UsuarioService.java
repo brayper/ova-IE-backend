@@ -4,10 +4,7 @@ import com.example.ova.entity.Usuario;
 import org.springframework.stereotype.Service;
 import com.example.ova.repository.UsuarioRepository;
 
-import java.util.Date;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class UsuarioService {
@@ -51,5 +48,9 @@ public class UsuarioService {
 
     public List<Usuario> usuarioList(){
         return usuarioRepository.findAll();
+    }
+
+    public Object cursando(String correo){
+        return usuarioRepository.findByCorreo(correo);
     }
 }
